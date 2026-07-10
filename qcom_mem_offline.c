@@ -3,21 +3,21 @@
 ‎#include <linux/of.h>
 ‎
 ‎/*
-‎* QCOM Memory Offline Stub - Final Verified Version
-‎* Target: Xiaomi Mi 13 Lite (ziyi) / SM7450
-‎* 
-‎* This stub is critical to:
-‎* 1. Fix RAM detection (Restores 8GB from 6GB regression).
-‎* 2. Satisfy Audio/Binder blobs (Prevents ASoC error -22).
-‎* 3. Eliminate system hangs by bypassing PASR logic.
+‎* qcom_mem_offline_stub: yeah I made that I'm cool baby 😎 
+‎* only for : Xiaomi Mi 13 Lite (ziyi) / SM7450
+‎
+‎* This stub is to fix those problems son :
+
+‎* 1- Fix 6 gigs of ram problem 
+
+‎* 2- Prevents ASoC error -22
+
+‎* 3- Make the sys hangs by bypassing PASR i guess
 ‎*/
 ‎
 ‎static int qcom_mem_offline_probe(struct platform_device *pdev)
 ‎{
-‎/* 
-‎* Success here ensures that the memory banks are initialized 
-‎* and the vendor blobs find the driver they depend on.
-‎*/
+
 ‎dev_info(&pdev->dev, "mem-offline: Stub probed. RAM and Blobs satisfied.\n");
 ‎return 0;
 ‎}
@@ -28,23 +28,21 @@
 ‎};
 ‎
 ‎/* 
-‎* CRITICAL: This macro exports the ID table to allow the kernel 
-‎* to automatically match this driver with the Device Tree node.
+‎* PLEASE FOLLOW README.md instructions.
 ‎*/
 ‎MODULE_DEVICE_TABLE(of, qcom_mem_offline_match);
 ‎
 ‎static struct platform_driver qcom_mem_offline_driver = {
 ‎.probe = qcom_mem_offline_probe,
 ‎.driver = {
-‎.name = "qcom_mem_offline", /* Exact name for blob compatibility */
+‎.name = "qcom_mem_offline", /* exact name so the blobs work perfectly */
 ‎.of_match_table = qcom_mem_offline_match,
-‎.suppress_bind_attrs = true, /* Prevents accidental unbind panics */
+‎.suppress_bind_attrs = true, /* for no unbind panics */
 ‎},
 ‎};
 ‎
 ‎/* 
-‎* subsys_initcall: Mandatory for early-init blobs (Audio/Binder).
-‎* Must be compiled as built-in (obj-y) for correct timing.
+‎* MUST be as built-in (obj-y) 
 ‎*/
 ‎static int __init qcom_mem_offline_init(void)
 ‎{
