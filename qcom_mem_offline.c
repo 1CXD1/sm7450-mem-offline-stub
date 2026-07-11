@@ -3,7 +3,7 @@
 ‎#include <linux/of.h>
 ‎
 ‎/*
-‎* qcom_mem_offline_stub: yeah I made that I'm cool baby 😎 
+‎* qcom_mem_offline_stub: yeah I made that I'm cool I know 😎 
 ‎* only for : Xiaomi Mi 13 Lite (ziyi) / SM7450
 ‎
 ‎* This stub is to fix those problems son :
